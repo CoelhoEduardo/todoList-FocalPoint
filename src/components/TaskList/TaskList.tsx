@@ -45,6 +45,23 @@ export const TaskList = () => {
             </div>
           ))}
       </div>
+      <div className={styles.completedTasks}>
+        <h2>Tarefas finalizadas</h2>
+        {tasks
+          .filter((task) => task.completed)
+          .map((task) => (
+            <div key={task.id} className={styles.task}>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => handleComplete(task.id)}
+              />
+              <span>{task.title}</span>
+              <button onClick={() => handleDelete(task.id)}>delete</button>
+            </div>
+          ))}
+      </div>
+      <button className={styles.addTaskButton}>Adicionar nova tarefa</button>
     </div>
   );
 };

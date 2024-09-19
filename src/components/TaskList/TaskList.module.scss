@@ -27,4 +27,14 @@
       border-radius: 5px;
     }
   }
+
+  .addTaskButton {
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
 }
