@@ -1,11 +1,14 @@
+"use client";
+
 import React, { useState } from "react";
 import styles from "./TaskList.module.scss";
+import { Modal } from "../Modal/Modal";
 
-type Task = {
+interface Task {
   id: number;
   title: string;
   completed: boolean;
-};
+}
 
 export const TaskList = () => {
   const [tasks, setTasks] = useState<Task[]>([
@@ -14,8 +17,11 @@ export const TaskList = () => {
     { id: 3, title: "Lavar a louça", completed: false },
     { id: 4, title: "Levar o lixo para fora", completed: true },
   ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"add" | "delete">("add");
+  const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
 
-  const handleComplete = (id: number) => {
+  const toggleTask = (id: number) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
@@ -23,8 +29,28 @@ export const TaskList = () => {
     );
   };
 
-  const handleDelete = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const openModal = (type: "add" | "delete", taskId?: number) => {
+    setModalType(type);
+    setSelectedTaskId(taskId || null);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedTaskId(null);
+  };
+
+  const handleSubmit = (title: string) => {
+    if (modalType === "add") {
+      const newTask: Task = {
+        id: Math.max(...tasks.map((t) => t.id)) + 1,
+        title,
+        completed: false,
+      };
+      setTasks([...tasks, newTask]);
+    } else if (modalType === "delete" && selectedTaskId) {
+      setTasks(tasks.filter((task) => task.id !== selectedTaskId));
+    }
   };
 
   return (
@@ -38,10 +64,15 @@ export const TaskList = () => {
               <input
                 type="checkbox"
                 checked={task.completed}
-                onChange={() => handleComplete(task.id)}
+                onChange={() => toggleTask(task.id)}
               />
-              <span>{task.title}</span>
-              <button onClick={() => handleDelete(task.id)}>delete</button>
+              <span className={styles.taskContent}>{task.title}</span>
+              <button
+                className={styles.deleteButton}
+                onClick={() => openModal("delete", task.id)}
+              >
+                🗑️
+              </button>
             </div>
           ))}
       </div>
@@ -54,14 +85,27 @@ export const TaskList = () => {
               <input
                 type="checkbox"
                 checked={task.completed}
-                onChange={() => handleComplete(task.id)}
+                onChange={() => toggleTask(task.id)}
               />
-              <span>{task.title}</span>
-              <button onClick={() => handleDelete(task.id)}>delete</button>
+              <span className={styles.taskContent}>{task.title}</span>
+              <button
+                className={styles.deleteButton}
+                onClick={() => openModal("delete", task.id)}
+              >
+                🗑️
+              </button>
             </div>
           ))}
       </div>
-      <button className={styles.addTaskButton}>Adicionar nova tarefa</button>
+      <button className={styles.addTaskButton} onClick={() => openModal("add")}>
+        Adicionar nova tarefa
+      </button>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onSubmit={handleSubmit}
+        type={modalType}
+      />
     </div>
   );
 };
