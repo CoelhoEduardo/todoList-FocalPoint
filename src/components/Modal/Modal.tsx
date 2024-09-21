@@ -23,12 +23,17 @@ export const Modal: React.FC<ModalProps> = ({
       <div className={styles.modalContent}>
         <h2>{type === "add" ? "Nova tarefa" : "Deletar tarefa"}</h2>
         {type === "add" && (
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Digite"
-          />
+          <form name="task-input"  className={styles.modalForm}>
+            <label form="task-input">Título</label>
+            <input
+              type="text"
+              id="task-input"
+              name="task-input"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Digite"
+            />
+          </form>
         )}
         {type === "delete" && (
           <p>Tem certeza que você deseja deletar essa tarefa?</p>

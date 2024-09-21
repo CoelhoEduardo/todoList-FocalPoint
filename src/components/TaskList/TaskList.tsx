@@ -92,7 +92,11 @@ export const TaskList = () => {
                     checked={task.completed}
                     onChange={() => toggleTask(task.id)}
                   />
-                  <span className={styles.taskTitleComplete}>{task.title}</span>
+                  <span
+                    className={`${styles.taskTitleComplete} ${styles.taskTitle}`}
+                  >
+                    {task.title}
+                  </span>
                 </div>
                 <button
                   className={styles.deleteButton}

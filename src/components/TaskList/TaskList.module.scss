@@ -9,8 +9,10 @@
     gap: 24px;
     padding: 32px;
     width: 450px;
+    height: 446px;
     border: 1px solid #d7dde9;
     border-radius: 16px;
+    opacity: 0px;
 
     .todayTasks,
     .completedTasks {
@@ -36,10 +38,9 @@
         border-radius: 5px;
 
         &:hover {
-          background-color: #f0f0f0; // Change background color on hover
-          border-color: #c0c4d1;
-          border: 1px solid #d7dde9; // Change border color on hover
-          cursor: pointer; // Change the cursor to indicate it's clickable
+          background-color: #f7f9fd;
+          border: none;
+          cursor: pointer;
         }
 
         .taskContent {
@@ -50,9 +51,9 @@
             appearance: none;
             margin-right: 1rem;
             width: 24px;
+            height: 24px;
             background: #ffffff;
             border-radius: 4px;
-            height: 24px;
             border: 1px solid #b0bbd1;
             position: relative;
             cursor: pointer;
@@ -83,7 +84,7 @@
         }
 
         .taskTitle {
-          color: #0000008a;
+          color: #000000;
           line-height: 19.36px;
           font-weight: 400;
           font-size: 16px;
@@ -91,10 +92,8 @@
 
         .taskTitleComplete {
           text-decoration: line-through;
+          text-decoration-color: #0000008a;
           color: #0000008a;
-          line-height: 19.36px;
-          font-weight: 400;
-          font-size: 16px;
         }
 
         .deleteButton {
@@ -108,7 +107,7 @@
   }
 
   .addTaskButton {
-    padding: 16px, 24px, 16px, 24px;
+    padding: 16px 24px;
     background: var(--primary-color);
     color: white;
     border: none;
@@ -116,5 +115,34 @@
     width: 450px;
     height: 51px;
     cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .taskList {
+      width: 100%;
+      height: auto;
+    }
+
+    .addTaskButton {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .taskTitle {
+      margin-right: 10px;
+      overflow: auto;
+      white-space: wrap;
+    }
+
+    .taskContent input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
+
+    .addTaskButton {
+      padding: 14px 20px;
+      font-size: 14px;
+    }
   }
 }
