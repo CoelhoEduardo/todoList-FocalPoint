@@ -1,49 +1,59 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  .modalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 286px;
+    max-width: 450px;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+    text-align: center;
 
-    .modalContent {
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        max-width: 400px;
-        width: 100%;
-        text-align: center;
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        button {
-            flex: 1;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .addButton {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .deleteButton {
-            background-color: #dc3545;
-            color: white;
-        }
+    h2 {
+      margin-bottom: 10px;
     }
+
+    input[type="text"] {
+      width: 386px;
+      height: 51px;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #d7dde9;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .addButton {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .deleteButton {
+      background: var(--danger-color);
+      color: white;
+    }
+  }
 }

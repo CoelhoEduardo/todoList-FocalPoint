@@ -22,10 +22,10 @@ body {
 
 /* colors variables */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
+    --primary-color: linear-gradient(90deg, #0796d3 0%, #53c0f0 68.65%);
+    --secondary-color: #E7EEFB;
     --success-color: #28a745;
-    --danger-color: #dc3545;
+    --danger-color: linear-gradient(90deg, #D30707 0%, #F05353 68.65%);
     --light-color: #f8f9fa;
     --dark-color: #343a40;
   }

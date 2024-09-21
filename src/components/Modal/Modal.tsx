@@ -27,7 +27,7 @@ export const Modal: React.FC<ModalProps> = ({
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Digite o título da tarefa"
+            placeholder="Digite"
           />
         )}
         {type === "delete" && (

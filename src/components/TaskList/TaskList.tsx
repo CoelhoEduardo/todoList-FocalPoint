@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import styles from "./TaskList.module.scss";
 import { Modal } from "../Modal/Modal";
+import { TrashIcon } from "./TrashIcon";
 
 interface Task {
   id: number;
@@ -54,48 +55,54 @@ export const TaskList = () => {
   };
 
   return (
-    <div className={styles.taskList}>
-      <div className={styles.todayTasks}>
-        <h2>Suas tarefas de hoje</h2>
-        {tasks
-          .filter((task) => !task.completed)
-          .map((task) => (
-            <div key={task.id} className={styles.task}>
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id)}
-              />
-              <span className={styles.taskContent}>{task.title}</span>
-              <button
-                className={styles.deleteButton}
-                onClick={() => openModal("delete", task.id)}
-              >
-                🗑️
-              </button>
-            </div>
-          ))}
-      </div>
-      <div className={styles.completedTasks}>
-        <h2>Tarefas finalizadas</h2>
-        {tasks
-          .filter((task) => task.completed)
-          .map((task) => (
-            <div key={task.id} className={styles.task}>
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id)}
-              />
-              <span className={styles.taskContent}>{task.title}</span>
-              <button
-                className={styles.deleteButton}
-                onClick={() => openModal("delete", task.id)}
-              >
-                🗑️
-              </button>
-            </div>
-          ))}
+    <div className={styles.taskPage}>
+      <div className={styles.taskList}>
+        <div className={styles.todayTasks}>
+          <h2>Suas tarefas de hoje</h2>
+          {tasks
+            .filter((task) => !task.completed)
+            .map((task) => (
+              <div key={task.id} className={styles.task}>
+                <div className={styles.taskContent}>
+                  <input
+                    type="checkbox"
+                    checked={task.completed}
+                    onChange={() => toggleTask(task.id)}
+                  />
+                  <span className={styles.taskTitle}>{task.title}</span>
+                </div>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => openModal("delete", task.id)}
+                >
+                  <TrashIcon />
+                </button>
+              </div>
+            ))}
+        </div>
+        <div className={styles.completedTasks}>
+          <h2>Tarefas finalizadas</h2>
+          {tasks
+            .filter((task) => task.completed)
+            .map((task) => (
+              <div key={task.id} className={styles.task}>
+                <div className={styles.taskContent}>
+                  <input
+                    type="checkbox"
+                    checked={task.completed}
+                    onChange={() => toggleTask(task.id)}
+                  />
+                  <span className={styles.taskTitleComplete}>{task.title}</span>
+                </div>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => openModal("delete", task.id)}
+                >
+                  <TrashIcon />
+                </button>
+              </div>
+            ))}
+        </div>
       </div>
       <button className={styles.addTaskButton} onClick={() => openModal("add")}>
         Adicionar nova tarefa
