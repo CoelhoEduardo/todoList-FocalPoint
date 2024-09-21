@@ -9,9 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@eslint/config-array": "^0.18.0",
+    "@eslint/object-schema": "^2.1.4",
+    "glob": "^11.0.0",
+    "lru-cache": "^10.4.3",
     "next": "14.2.12",
     "react": "^18",
     "react-dom": "^18",
+    "rimraf": "^6.0.1",
     "url": "^0.11.4"
   },
   "devDependencies": {
